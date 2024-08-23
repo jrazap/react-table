@@ -17,14 +17,8 @@ const SortingTable = () => {
     useSortBy
   );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    footerGroups,
-    rows,
-    prepareRow,
-  } = tableInstance;
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    tableInstance;
 
   return (
     <table {...getTableProps()}>
@@ -72,20 +66,6 @@ const SortingTable = () => {
           );
         })}
       </tbody>
-      <tfoot>
-        {footerGroups.map((footerGroup) => (
-          <tr
-            {...footerGroup.getFooterGroupProps()}
-            key={`fg-${footerGroup.id}`}
-          >
-            {footerGroup.headers.map((column) => (
-              <td {...column.getFooterProps()} key={column.id}>
-                {column.render("Footer")}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tfoot>
     </table>
   );
 };

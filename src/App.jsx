@@ -1,10 +1,10 @@
-import FilteringTable from "./table/FilteringTable";
+import PaginationTable from "./table/PaginationTable";
 
 function App() {
   return (
-    <>
-      <FilteringTable />
-    </>
+    <div className="container">
+      <PaginationTable />
+    </div>
   );
 }
 

@@ -29,7 +29,6 @@ const FilteringTable = () => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    footerGroups,
     rows,
     prepareRow,
     state,
@@ -71,17 +70,6 @@ const FilteringTable = () => {
             );
           })}
         </tbody>
-        <tfoot>
-          {footerGroups.map((footerGroup) => (
-            <tr {...footerGroup.getFooterGroupProps()} key={footerGroup.id}>
-              {footerGroup.headers.map((column) => (
-                <td {...column.getFooterProps()} key={column.id}>
-                  {column.render("Footer")}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
       </table>
     </>
   );
