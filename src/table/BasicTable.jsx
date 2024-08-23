@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useTable } from "react-table";
 import { COLUMNS } from "./columns";
 import DATA from "../data/users.json";
@@ -26,9 +26,14 @@ const BasicTable = () => {
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr
+            {...headerGroup.getHeaderGroupProps()}
+            key={`hg-${headerGroup.id}`}
+          >
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps()} key={column.id}>
+                {column.render("Header")}
+              </th>
             ))}
           </tr>
         ))}
@@ -37,9 +42,11 @@ const BasicTable = () => {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+            <tr {...row.getRowProps()} key={row.id}>
               {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                <td {...cell.getCellProps()} key={cell.column.id}>
+                  {cell.render("Cell")}
+                </td>
               ))}
             </tr>
           );
@@ -47,9 +54,14 @@ const BasicTable = () => {
       </tbody>
       <tfoot>
         {footerGroups.map((footerGroup) => (
-          <tr {...footerGroup.getFooterGroupProps()}>
+          <tr
+            {...footerGroup.getFooterGroupProps()}
+            key={`fg-${footerGroup.id}`}
+          >
             {footerGroup.headers.map((column) => (
-              <td {...column.getFooterProps()}>{column.render("Footer")}</td>
+              <td {...column.getFooterProps()} key={column.id}>
+                {column.render("Footer")}
+              </td>
             ))}
           </tr>
         ))}

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useTable, useGlobalFilter, useFilters } from "react-table";
 import { COLUMNS } from "./columns";
 import DATA from "../data/users.json";
@@ -44,7 +44,10 @@ const FilteringTable = () => {
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+            <tr
+              {...headerGroup.getHeaderGroupProps()}
+              key={`hg-${headerGroup.id}`}
+            >
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()} key={column.id}>
                   {column.render("Header")}

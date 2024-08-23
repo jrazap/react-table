@@ -1,4 +1,3 @@
-import { useState } from "react";
 import FilteringTable from "./table/FilteringTable";
 
 function App() {
