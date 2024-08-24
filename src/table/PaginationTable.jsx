@@ -17,11 +17,10 @@ const PaginationTable = () => {
     usePagination
   );
 
+  const { getTableProps, getTableBodyProps, headerGroups, prepareRow } =
+    tableInstance;
+
   const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    prepareRow,
     page,
     nextPage,
     previousPage,

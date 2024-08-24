@@ -4,7 +4,7 @@ import { useRowSelect, useTable } from "react-table";
 import { COLUMNS } from "./columns";
 import DATA from "../data/users.json";
 import "../styles/table.css";
-import { Checkbox } from "./Checkbox";
+import { Checkbox } from "./components/Checkbox";
 
 const RowSelection = () => {
   const columns = useMemo(() => COLUMNS, []);
@@ -34,20 +34,16 @@ const RowSelection = () => {
     }
   );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-    selectedFlatRows,
-  } = tableInstance;
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    tableInstance;
+
+  const { selectedFlatRows } = tableInstance;
 
   const firstPageRows = rows.slice(0, 10);
 
   return (
     <>
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className="my-4">
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr
@@ -76,22 +72,22 @@ const RowSelection = () => {
             );
           })}
         </tbody>
-
-        <pre>
-          <code>
-            {JSON.stringify(
-              {
-                selectedFlatRows: selectedFlatRows.map((row) => ({
-                  id: row.id,
-                  values: row.values,
-                })),
-              },
-              null,
-              2
-            )}
-          </code>
-        </pre>
       </table>
+
+      <pre>
+        <code>
+          {JSON.stringify(
+            {
+              selectedFlatRows: selectedFlatRows.map((row) => ({
+                id: row.id,
+                values: row.values,
+              })),
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
     </>
   );
 };

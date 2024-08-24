@@ -11,11 +11,13 @@ export const COLUMNS = [
     Header: "First Name",
     Footer: "First Name",
     accessor: "first_name",
+    sticky: "left",
   },
   {
     Header: "Last Name",
     Footer: "Last Name",
     accessor: "last_name",
+    sticky: "left",
   },
   {
     Header: "Date Of Birth",

@@ -3,8 +3,8 @@ import { useTable, useGlobalFilter, useFilters } from "react-table";
 import { COLUMNS } from "./columns";
 import DATA from "../data/users.json";
 import "../styles/table.css";
-import GlobalFilter from "./GlobalFilter";
-import ColumnFilter from "./ColumnFilter";
+import GlobalFilter from "./components/GlobalFilter";
+import ColumnFilter from "./components/ColumnFilter";
 
 const FilteringTable = () => {
   const columns = useMemo(() => COLUMNS, []);
@@ -25,15 +25,10 @@ const FilteringTable = () => {
     useGlobalFilter
   );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-    state,
-    setGlobalFilter,
-  } = tableInstance;
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    tableInstance;
+
+  const { state, setGlobalFilter } = tableInstance;
 
   const { globalFilter } = state;
 
@@ -48,7 +43,11 @@ const FilteringTable = () => {
               key={`hg-${headerGroup.id}`}
             >
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} key={column.id}>
+                <th
+                  {...column.getHeaderProps()}
+                  key={column.id}
+                  className="text-center"
+                >
                   {column.render("Header")}
                   <div>{column.canFilter ? column.render("Filter") : null}</div>
                 </th>

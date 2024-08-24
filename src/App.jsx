@@ -1,9 +1,9 @@
-import ColumnOrder from "./table/ColumnOrder";
+import PaginationTable from "./table/PaginationTable";
 
 function App() {
   return (
     <div className="container">
-      <ColumnOrder />
+      <PaginationTable />
     </div>
   );
 }

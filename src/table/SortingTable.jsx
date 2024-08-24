@@ -33,7 +33,7 @@ const SortingTable = () => {
                 {...column.getHeaderProps(column.getSortByToggleProps())}
                 key={column.id}
               >
-                <div className="">
+                <div>
                   {column.render("Header")}
                   <span>
                     {column.isSorted ? (

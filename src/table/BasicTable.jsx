@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
-import { COLUMNS } from "./columns";
 import DATA from "../data/users.json";
 import "../styles/table.css";
+import { COLUMNS } from "./columns";
 
 const BasicTable = () => {
   const columns = useMemo(() => COLUMNS, []);

@@ -1,50 +1,45 @@
 import { useMemo } from "react";
-import { useColumnOrder, useTable } from "react-table";
-import { COLUMNS } from "./components/Columns";
+import { useTable } from "react-table";
 import DATA from "../data/users.json";
-import "../styles/table.css";
 
-const ColumnOrder = () => {
+import "../styles/table.css";
+import { Checkbox } from "./components/Checkbox";
+import { COLUMNS } from "./columns";
+
+const ColumnHiding = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => DATA, []);
 
-  const tableInstance = useTable(
-    {
-      columns: columns,
-      data: data,
-    },
-    useColumnOrder
-  );
+  const tableInstance = useTable({
+    columns: columns,
+    data: data,
+  });
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
 
-  const { setColumnOrder } = tableInstance;
-
-  const changeOrder = () => {
-    setColumnOrder([
-      "id",
-      "first_name",
-      "last_name",
-      "phone",
-      "country",
-      "date_of_birth",
-    ]);
-  };
-
-  const resetOrder = () => {
-    setColumnOrder([]);
-  };
+  const { allColumns, getToggleHideAllColumnsProps } = tableInstance;
 
   return (
-    <section className="my-4">
-      <div className="d-flex align-items-center justify-content-start gap-3 mb-3">
-        <button className="btn btn-dark" onClick={changeOrder}>
-          Change column order
-        </button>
-        <button className="btn btn-dark" onClick={resetOrder}>
-          Reset column order
-        </button>
+    <>
+      <div className="d-flex align-items-center gap-3">
+        <div className="toggle-all my-4">
+          <Checkbox {...getToggleHideAllColumnsProps()} label="Toggle All" />
+        </div>
+
+        {allColumns.map((column) => (
+          <div key={column.id}>
+            <input
+              type="checkbox"
+              className="form-check-inline form-check-input shadow-none"
+              {...column.getToggleHiddenProps()}
+              id={column.id}
+            />
+            <label htmlFor={column.id} className="form-label">
+              {column.Header}
+            </label>
+          </div>
+        ))}
       </div>
 
       <table {...getTableProps()}>
@@ -77,8 +72,8 @@ const ColumnOrder = () => {
           })}
         </tbody>
       </table>
-    </section>
+    </>
   );
 };
 
-export default ColumnOrder;
+export default ColumnHiding;
