@@ -1,9 +1,9 @@
-import RowSelection from "./table/RowSelection";
+import ColumnOrder from "./table/ColumnOrder";
 
 function App() {
   return (
     <div className="container">
-      <RowSelection />
+      <ColumnOrder />
     </div>
   );
 }
