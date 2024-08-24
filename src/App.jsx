@@ -1,9 +1,9 @@
-import PaginationTable from "./table/PaginationTable";
+import RowSelection from "./table/RowSelection";
 
 function App() {
   return (
     <div className="container">
-      <PaginationTable />
+      <RowSelection />
     </div>
   );
 }
